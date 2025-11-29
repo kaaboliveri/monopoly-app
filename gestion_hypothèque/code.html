@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestion des Hypothèques - Monopoly</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Poppins:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "monopoly-blue": "#009ee2",
+            "monopoly-green-light": "#e6f2e6",
+            "monopoly-card-bg": "#f7f7f7",
+            "monopoly-dark-gray": "#374151"
+          },
+          fontFamily: {
+            "display": ["Poppins", "Arial", "sans-serif"],
+            "heading": ["Montserrat", "Poppins", "Arial", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-display bg-monopoly-green-light dark:bg-gray-900 text-monopoly-dark-gray dark:text-gray-200">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<main class="flex-1 px-4 sm:px-6 lg:px-8 xl:px-20 2xl:px-40 py-8">
+<div class="layout-content-container mx-auto flex max-w-7xl flex-col gap-8">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="font-heading text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-monopoly-blue dark:text-monopoly-blue">Gestion des Hypothèques</h1>
+<p class="text-base font-normal text-monopoly-dark-gray dark:text-gray-400">Gérez vos propriétés, hypothéquez pour obtenir des liquidités ou rachetez vos biens.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 flex flex-col gap-4">
+<div class="flex px-0 py-3">
+<div class="flex h-10 w-full items-center justify-center rounded-lg bg-white dark:bg-gray-800 shadow-inner p-1 border border-gray-200 dark:border-gray-700">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-monopoly-blue has-[:checked]:text-white text-monopoly-dark-gray dark:text-gray-400 text-sm font-medium leading-normal transition-all duration-200">
+<span class="truncate">Toutes</span>
+<input checked="" class="invisible w-0" name="property-filter" type="radio" value="Toutes"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-monopoly-blue has-[:checked]:text-white text-monopoly-dark-gray dark:text-gray-400 text-sm font-medium leading-normal transition-all duration-200">
+<span class="truncate">Hypothécables</span>
+<input class="invisible w-0" name="property-filter" type="radio" value="Hypothécables"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-monopoly-blue has-[:checked]:text-white text-monopoly-dark-gray dark:text-gray-400 text-sm font-medium leading-normal transition-all duration-200">
+<span class="truncate">Hypothéquées</span>
+<input class="invisible w-0" name="property-filter" type="radio" value="Hypothéquées"/>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-1 @xl:grid-cols-2 gap-4">
+<div class="p-0 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] bg-monopoly-card-bg dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="h-2 w-full bg-green-500"></div>
+<div class="flex w-full flex-col items-stretch justify-center gap-3 p-4">
+<p class="text-sm font-normal text-green-600 dark:text-green-400">Propriété Disponible</p>
+<p class="text-lg font-bold leading-tight tracking-[-0.015em] text-black dark:text-white">Avenue des Champs-Élysées</p>
+<div class="flex flex-col gap-2">
+<p class="text-base font-normal text-monopoly-dark-gray dark:text-gray-400">Valeur de l'hypothèque: <span class="font-semibold text-black dark:text-gray-200">200 M</span></p>
+</div>
+<button class="mt-2 flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-blue-500 text-white text-sm font-bold leading-normal hover:bg-blue-600 transition-colors">
+<span class="truncate">Hypothéquer</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-0 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] bg-monopoly-card-bg dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="h-2 w-full bg-blue-800"></div>
+<div class="flex w-full flex-col items-stretch justify-center gap-3 p-4">
+<p class="text-sm font-normal text-red-500 dark:text-red-400">Propriété Hypothéquée</p>
+<p class="text-lg font-bold leading-tight tracking-[-0.015em] text-black dark:text-white">Rue de la Paix</p>
+<div class="flex flex-col gap-2">
+<p class="text-base font-normal text-monopoly-dark-gray dark:text-gray-400">Coût de rachat: <span class="font-semibold text-black dark:text-gray-200">220 M</span></p>
+</div>
+<button class="mt-2 flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-orange-500 text-white text-sm font-bold leading-normal hover:bg-orange-600 transition-colors">
+<span class="truncate">Racheter</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-0 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] bg-monopoly-card-bg dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="h-2 w-full bg-orange-500"></div>
+<div class="flex w-full flex-col items-stretch justify-center gap-3 p-4">
+<p class="text-sm font-normal text-green-600 dark:text-green-400">Propriété Disponible</p>
+<p class="text-lg font-bold leading-tight tracking-[-0.015em] text-black dark:text-white">Avenue Mozart</p>
+<div class="flex flex-col gap-2">
+<p class="text-base font-normal text-monopoly-dark-gray dark:text-gray-400">Valeur de l'hypothèque: <span class="font-semibold text-black dark:text-gray-200">100 M</span></p>
+</div>
+<button class="mt-2 flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-blue-500 text-white text-sm font-bold leading-normal hover:bg-blue-600 transition-colors">
+<span class="truncate">Hypothéquer</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-0 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] bg-monopoly-card-bg dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="h-2 w-full bg-pink-500"></div>
+<div class="flex w-full flex-col items-stretch justify-center gap-3 p-4">
+<p class="text-sm font-normal text-red-500 dark:text-red-400">Propriété Hypothéquée</p>
+<p class="text-lg font-bold leading-tight tracking-[-0.015em] text-black dark:text-white">Boulevard de la Villette</p>
+<div class="flex flex-col gap-2">
+<p class="text-base font-normal text-monopoly-dark-gray dark:text-gray-400">Coût de rachat: <span class="font-semibold text-black dark:text-gray-200">70 M</span></p>
+</div>
+<button class="mt-2 flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-orange-500 text-white text-sm font-bold leading-normal hover:bg-orange-600 transition-colors">
+<span class="truncate">Racheter</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="sticky top-8 flex flex-col gap-4 rounded-xl bg-monopoly-card-bg dark:bg-gray-800 p-6 shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-gray-200 dark:border-gray-700">
+<h2 class="font-heading text-xl font-bold text-monopoly-blue dark:text-monopoly-blue">Résumé Financier</h2>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<p class="text-monopoly-dark-gray dark:text-gray-400">Solde actuel</p>
+<p class="font-bold text-lg text-black dark:text-white">1500 M</p>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-monopoly-dark-gray dark:text-gray-400">Transaction en cours</p>
+<p class="font-bold text-lg text-green-500">+ 200 M</p>
+</div>
+<hr class="border-gray-200 dark:border-gray-600"/>
+<div class="flex justify-between items-center">
+<p class="text-monopoly-dark-gray dark:text-gray-400">Nouveau solde</p>
+<p class="font-extrabold text-2xl text-black dark:text-white">1700 M</p>
+</div>
+</div>
+<button class="mt-4 flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-red-600 text-white text-base font-bold leading-normal shadow-lg shadow-red-500/30 hover:bg-red-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+<span class="truncate">Valider l'opération</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

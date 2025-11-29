@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestion de Patrimoine - Monopoly</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "monopoly-blue": "#009ee2",
+                        "monopoly-red": "#ed1c24",
+                        "monopoly-orange": "#f7941d",
+                        "monopoly-yellow": "#fff200",
+                        "monopoly-green": "#00a651",
+                        "monopoly-light-blue": "#80c4e4",
+                        "monopoly-pink": "#d93a96",
+                        "monopoly-dark-blue": "#0072bb",
+                        "pale-green": "#e6f2e6",
+                        "light-gray-box": "#f7f7f7",
+                        "dark-text": "#374151"},
+                    fontFamily: {
+                        display: ["Montserrat", "Poppins", "Arial", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-pale-green font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center py-5 sm:px-4 md:px-10 lg:px-20 xl:px-40">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-4 sm:px-6 py-3">
+<div class="flex items-center gap-4 text-black">
+<div class="text-monopoly-blue w-6 h-6">
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.68 13.05c-.32.32-1.26.12-2.23-.49-.75-.48-1.52-.92-2.19-1.22-.53-.23-1.07-.37-1.6-.37-.8-.01-1.28.48-1.28 1.15 0 .45.23.82.68 1.18.44.36.9.68 1.34 1.01l-1.01 1.01c-1.2-1-2.5-2.27-3.23-3.15-.32-.38-.51-.83-.51-1.34 0-.55.22-1.06.63-1.47.41-.41.92-.63 1.47-.63.95 0 1.94.41 3.03 1.2.62.46 1.25.96 1.88 1.48.51.41.9.72 1.15.82.38.16.65.15.8-.01.32-.32.12-1.26-.49-2.23-.48-.75-.92-1.52-1.22-2.19-.23-.53-.37-1.07-.37-1.6 0-.8.48-1.28 1.15-1.28.45 0 .82.23 1.18.68.36.44.68.9.99 1.32l1.01-1.01c-1-1.2-2.27-2.5-3.15-3.23-.38-.32-.83-.51-1.34-.51-.55 0-1.06.22-1.47.63-.41.41-.63.92-.63 1.47 0 .95.41 1.94 1.2 3.03.46.62.96 1.25 1.48 1.88.41.51.72.9.82 1.15.16.38.15.65-.01.8z"></path>
+</svg>
+</div>
+<h2 class="text-monopoly-blue text-lg font-bold leading-tight tracking-[-0.015em]">Monopoly</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-monopoly-blue text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-3">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+<span class="hidden sm:inline">Retour au plateau</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Avatar du joueur" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAQtHkNJ5JZtFLdS606B0yBBblyvobN-ODakH9cdJzxeUamO_il4Ts6WoBNsv6fvmrL2bMzK9sG1NrydqdvDWmTyE4lF5WzXRmVWMumJfk8CgCu285EZS7CNVtDks5rfXrEMzNm0ziBq5TLXw8fPUzOouIoidVRR0crGapNjDjs6PnZ8Z0Xa8dwzsj0nsmRxrD5Dp_hKu-0SoLcKfPdbXqMZRgB8a5k8KUfFE--pDj9ipiTWWQ0OQCBtid3Hzz937naCO4kEXNALQU");'></div>
+</div>
+</header>
+<div class="flex flex-wrap justify-between items-end gap-4 p-4 mt-4">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-monopoly-blue text-4xl font-bold leading-tight tracking-[-0.033em]">Gestion de Patrimoine</p>
+<p class="text-dark-text text-base font-normal leading-normal">Gérez vos propriétés, construisez et dominez le jeu.</p>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<p class="text-green-600 text-lg font-bold leading-normal">Argent disponible : <span class="font-bold">2500 M</span></p>
+<p class="text-gray-500 text-sm font-normal leading-normal">Valeur des actifs : <span class="font-bold">8500 M</span></p>
+</div>
+</div>
+<div class="flex gap-2 p-3 overflow-x-auto">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-monopoly-blue pl-3 pr-2 text-white font-bold">
+<p class="text-sm leading-normal">Trier par</p>
+<span class="material-symbols-outlined text-base">keyboard_arrow_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-monopoly-blue pl-3 pr-2 text-white font-bold">
+<p class="text-sm leading-normal">Couleur</p>
+<span class="material-symbols-outlined text-base">keyboard_arrow_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-monopoly-blue pl-3 pr-2 text-white font-bold">
+<p class="text-sm leading-normal">Loyer</p>
+<span class="material-symbols-outlined text-base">keyboard_arrow_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-monopoly-orange text-white pl-3 pr-2">
+<p class="text-sm font-bold leading-normal">Monopoles</p>
+<span class="material-symbols-outlined text-base">check</span>
+</button>
+</div>
+<div class="bg-light-gray-box p-4 rounded-xl mt-4">
+<h2 class="text-monopoly-blue text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3">Mes Propriétés</h2>
+<div class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
+<div class="flex flex-col rounded-xl overflow-hidden shadow-sm bg-white cursor-pointer transition-transform hover:scale-105 border-2 border-monopoly-blue">
+<div class="h-4 w-full bg-monopoly-dark-blue"></div>
+<div class="p-4 flex flex-col gap-3 flex-grow">
+<h3 class="font-bold text-lg text-black">Rue de la Paix</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl text-monopoly-green">home</span>
+<span class="material-symbols-outlined text-xl text-monopoly-green">home</span>
+<span class="material-symbols-outlined text-xl text-monopoly-green">home</span>
+<span class="material-symbols-outlined text-xl text-monopoly-green">home</span>
+</div>
+<p class="text-dark-text text-sm mt-auto pt-2">Loyer actuel : <span class="font-bold">1400 M</span></p>
+</div>
+</div>
+<div class="flex flex-col rounded-xl overflow-hidden shadow-sm bg-white cursor-pointer transition-transform hover:scale-105 border-2 border-monopoly-blue">
+<div class="h-4 w-full bg-monopoly-dark-blue"></div>
+<div class="p-4 flex flex-col gap-3 flex-grow">
+<h3 class="font-bold text-lg text-black">Av. des Champs-Élysées</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl text-monopoly-red">hotel</span>
+</div>
+<p class="text-dark-text text-sm mt-auto pt-2">Loyer actuel : <span class="font-bold">2000 M</span></p>
+</div>
+</div>
+<div class="flex flex-col rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white cursor-pointer transition-transform hover:scale-105">
+<div class="h-4 w-full bg-monopoly-orange"></div>
+<div class="p-4 flex flex-col gap-3 flex-grow">
+<h3 class="font-bold text-lg text-black">Avenue Mozart</h3>
+<div class="flex items-center gap-2 h-6"></div>
+<p class="text-dark-text text-sm mt-auto pt-2">Loyer actuel : <span class="font-bold">14 M</span></p>
+</div>
+</div>
+<div class="flex flex-col rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white cursor-pointer transition-transform hover:scale-105">
+<div class="h-4 w-full bg-monopoly-red"></div>
+<div class="p-4 flex flex-col gap-3 flex-grow">
+<h3 class="font-bold text-lg text-black">Avenue Henri-Martin</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl text-monopoly-green">home</span>
+</div>
+<p class="text-dark-text text-sm mt-auto pt-2">Loyer actuel : <span class="font-bold">100 M</span></p>
+</div>
+</div>
+<div class="flex flex-col rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white cursor-pointer transition-transform hover:scale-105">
+<div class="h-4 w-full bg-monopoly-yellow"></div>
+<div class="p-4 flex flex-col gap-3 flex-grow">
+<h3 class="font-bold text-lg text-black">Faubourg Saint-Honoré</h3>
+<div class="flex items-center gap-2 h-6"></div>
+<p class="text-dark-text text-sm mt-auto pt-2">Loyer actuel : <span class="font-bold">22 M</span></p>
+</div>
+</div>
+<div class="flex flex-col rounded-xl overflow-hidden shadow-sm border border-gray-300 bg-gray-200 opacity-70 cursor-pointer transition-transform hover:scale-105">
+<div class="h-4 w-full bg-monopoly-pink"></div>
+<div class="p-4 flex flex-col gap-3 flex-grow relative">
+<div class="absolute inset-0 flex items-center justify-center bg-black/50">
+<span class="text-white font-bold text-xl transform -rotate-12 tracking-wider p-2 rounded-md bg-red-600">HYPOTHÉQUÉ</span>
+</div>
+<h3 class="font-bold text-lg text-black">Avenue de Neuilly</h3>
+<div class="flex items-center gap-2 h-6"></div>
+<p class="text-dark-text text-sm mt-auto pt-2">Valeur : <span class="font-bold">60 M</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<div class="bg-light-gray-box rounded-xl shadow-md p-6">
+<h2 class="text-monopoly-blue text-[22px] font-bold leading-tight tracking-[-0.015em] pb-4 border-b border-gray-200">Actions pour: Rue de la Paix</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 mt-4">
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-lg text-monopoly-blue">Construire</h3>
+<p class="text-dark-text text-sm">Vous possédez toutes les propriétés de ce groupe. Vous pouvez maintenant construire des maisons et des hôtels.</p>
+<div class="space-y-3 mt-2">
+<div class="flex justify-between items-center">
+<span class="text-dark-text">Acheter Maison (5ème)</span>
+<span class="font-bold text-black">200 M</span>
+</div>
+<button class="w-full text-center rounded-lg h-10 px-4 text-sm font-bold bg-monopoly-orange text-white">Acheter Hôtel (remplace 4 maisons)</button>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-lg text-monopoly-blue">Gérer la propriété</h3>
+<p class="text-dark-text text-sm">Besoin de liquidités ? Vous pouvez hypothéquer ou vendre cette propriété.</p>
+<div class="space-y-3 mt-2">
+<div class="flex justify-between items-center">
+<span class="text-dark-text">Valeur de l'hypothèque</span>
+<span class="font-bold text-black">200 M</span>
+</div>
+<div class="flex gap-3">
+<button class="w-full text-center rounded-lg h-10 px-4 text-sm font-bold bg-monopoly-blue text-white">Hypothéquer</button>
+<button class="w-full text-center rounded-lg h-10 px-4 text-sm font-bold bg-monopoly-red text-white">Vendre la Propriété</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

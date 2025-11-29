@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stitch Monopoly - Jeu contre IA</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        #game-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1200px;
+            width: 95%;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(11, 1fr);
+            grid-template-rows: repeat(11, 1fr);
+            gap: 2px;
+            background: #2d3748;
+            padding: 2px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            aspect-ratio: 1;
+        }
+
+        .cell {
+            background: #f7fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            padding: 5px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cell:hover {
+            background: #e6fffa;
+            transform: scale(1.05);
+        }
+
+        .cell.property {
+            border-top: 15px solid;
+        }
+
+        .cell.owned-by-player {
+            background: #bee3f8;
+        }
+
+        .cell.owned-by-ai {
+            background: #fed7d7;
+        }
+
+        .player-token,
+        .ai-token {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            z-index: 10;
+        }
+
+        .player-token {
+            background: #3182ce;
+            top: 5px;
+            left: 5px;
+        }
+
+        .ai-token {
+            background: #e53e3e;
+            top: 5px;
+            right: 5px;
+        }
+
+        #player-info,
+        #ai-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        #ai-info {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        #controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        #log {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .log-entry {
+            padding: 8px;
+            margin: 5px 0;
+            border-left: 4px solid #667eea;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .log-entry.ai {
+            border-left-color: #e53e3e;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .dice {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 0 5px;
+        }
+
+        @keyframes roll {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(90deg);
+            }
+
+            <h3>👤 Vous</h3><div class="info-grid"><div class="stat"><div class="stat-label">Argent</div><div class="stat-value" id="player-money">1500€</div></div><div class="stat"><div class="stat-label">Position</div><div class="stat-value" id="player-position">Départ</div></div><div class="stat"><div class="stat-label">Propriétés</div><div class="stat-value" id="player-properties">0</div></div></div></div><div id="game-board"></div><div id="ai-info"><h3>🤖 IA Adversaire</h3><div class="info-grid"><div class="stat"><div class="stat-label">Argent</div><div class="stat-value" id="ai-money">1500€</div></div><div class="stat"><div class="stat-label">Position</div><div class="stat-value" id="ai-position">Départ</div></div><div class="stat"><div class="stat-label">Propriétés</div><div class="stat-value" id="ai-properties">0</div></div></div></div><div id="controls"><button id="roll-dice" onclick="rollDice()">🎲 Lancer les dés</button><button id="end-turn" onclick="endTurn()" disabled>✅ Fin de tour</button><button onclick="newGame()">🔄 Nouvelle partie</button></div><div id="log"></div></div><div id="modal"><div class="modal-content"><h2 id="modal-title">Titre</h2><p id="modal-message">Message</p><div id="modal-dice-result"></div><div class="modal-buttons" id="modal-buttons"><button onclick="closeModal()">OK</button></div></div></div><script> // Configuration du plateau
+
+            const BOARD=[ {
+                name: "Départ", type: "start", color: null
+            }
+
+            ,
+            {
+            name: "Belleville", type: "property", price: 60, rent: 2, color: "#8B4513"
+        }
+
+        ,
+        {
+        name: "Caisse Communauté", type: "community", color: null
+        }
+
+        ,
+        {
+        name: "Lecourbe", type: "property", price: 60, rent: 4, color: "#8B4513"
+        }
+
+        ,
+        {
+        name: "Impôt", type: "tax", amount: 200, color: null
+        }
+
+        ,
+        {
+        name: "Gare Montparnasse", type: "station", price: 200, rent: 25, color: "#000"
+        }
+
+        ,
+        {
+        name: "Vaugirard", type: "property", price: 100, rent: 6, color: "#87CEEB"
+        }
+
+        ,
+        {
+        name: "Chance", type: "chance", color: null
+        }
+
+        ,
+        {
+        name: "Courcelles", type: "property", price: 100, rent: 6, color: "#87CEEB"
+        }
+
+        ,
+        {
+        name: "République", type: "property", price: 120, rent: 8, color: "#87CEEB"
+        }
+
+        ,
+        {
+        name: "Prison", type: "jail", color: null
+        }
+
+        ,
+        {
+        name: "La Villette", type: "property", price: 140, rent: 10, color: "#FF1493"
+        }
+
+        ,
+        {
+        name: "Électricité", type: "utility", price: 150, rent: 0, color: "#FFD700"
+        }
+
+        ,
+        {
+        name: "Neuilly", type: "property", price: 140, rent: 10, color: "#FF1493"
+        }
+
+        ,
+        {
+        name: "Paradis", type: "property", price: 160, rent: 12, color: "#FF1493"
+        }
+
+        ,
+        {
+        name: "Gare de Lyon", type: "station", price: 200, rent: 25, color: "#000"
+        }
+
+        ,
+        {
+        name: "Mozart", type: "property", price: 180, rent: 14, color: "#FFA500"
+        }
+
+        ,
+        {
+        name: "Caisse Communauté", type: "community", color: null
+        }
+
+        ,
+        {
+        name: "Saint-Michel", type: "property", price: 180, rent: 14, color: "#FFA500"
+        }
+
+        ,
+        {
+        name: "Pigalle", type: "property", price: 200, rent: 16, color: "#FFA500"
+        }
+
+        ,
+        {
+        name: "Parc Gratuit", type: "parking", color: null
+        }
+
+        ,
+        {
+        name: "Matignon", type: "property", price: 220, rent: 18, color: "#FF0000"
+        }
+
+        ,
+        {
+        name: "Chance", type: "chance", color: null
+        }
+
+        ,
+        {
+        name: "Malesherbes", type: "property", price: 220, rent: 18, color: "#FF0000"
+        }
+
+        ,
+        {
+        name: "Henri Martin", type: "property", price: 240, rent: 20, color: "#FF0000"
+        }
+
+        ,
+        {
+        name: "Gare du Nord", type: "station", price: 200, rent: 25, color: "#000"
+        }
+
+        ,
+        {
+        name: "Saint-Honoré", type: "property", price: 260, rent: 22, color: "#FFFF00"
+        }
+
+        ,
+        {
+        name: "Bourse", type: "property", price: 260, rent: 22, color: "#FFFF00"
+        }
+
+        ,
+        {
+        name: "Eau", type: "utility", price: 150, rent: 0, color: "#FFD700"
+        }
+
+        ,
+        {
+        name: "La Fayette", type: "property", price: 280, rent: 24, color: "#FFFF00"
+        }
+
+        ,
+        {
+        name: "➡️ Prison", type: "go-to-jail", color: null
+        }
+
+        ,
+        {
+        name: "Breteuil", type: "property", price: 300, rent: 26, color: "#00FF00"
+        }
+
+        ,
+        {
+        name: "Foch", type: "property", price: 300, rent: 26, color: "#00FF00"
+        }
+
+        ,
+        {
+        name: "Caisse Communauté", type: "community", color: null
+        }
+
+        ,
+        {
+        name: "Capucines", type: "property", price: 320, rent: 28, color: "#00FF00"
+        }
+
+        ,
+        {
+        name: "Gare Saint-Lazare", type: "station", price: 200, rent: 25, color: "#000"
+        }
+
+        ,
+        {
+        name: "Chance", type: "chance", color: null
+        }
+
+        ,
+        {
+        name: "Champs-Élysées", type: "property", price: 350, rent: 35, color: "#0000FF"
+        }
+
+        ,
+        {
+        name: "Taxe de Luxe", type: "tax", amount: 100, color: null
+        }
+
+        ,
+        {
+        name: "Paix", type: "property", price: 400, rent: 50, color: "#0000FF"
+        }
+
+        ];
+
+        // État du jeu
+        let gameState= {
+            player: {
+                money: 1500,
+                    position: 0,
+                    properties: [],
+                    inJail: false
+            }
+
+            ,
+            ai: {
+                money: 1500,
+                    position: 0,
+                    properties: [],
+                    inJail: false
+            }
+
+            ,
+            currentPlayer: 'player',
+            gameOver: false
+        }
+
+        ;
+
+        // Initialisation
+        function initGame() {
+            const board=document.getElementById('game-board');
+            board.innerHTML='';
+
+            // Créer les cellules du plateau (simplifié en grille)
+            BOARD.forEach((cell, index)=> {
+                    const cellDiv=document.createElement('div');
+                    cellDiv.className='cell';
+
+                    if (cell.type==='property' || cell.type==='station') {
+                        cellDiv.classList.add('property');
+
+                        if (cell.color) {
+                            cellDiv.style.borderTopColor=cell.color;
+                        }
+                    }
+
+                    cellDiv.innerHTML=`<strong>$ {
+                        cell.name
+                    }
+
+                    </strong>`;
+
+                    if (cell.price) {
+                        cellDiv.innerHTML +=`<br><small>$ {
+                            cell.price
+                        }
+
+                        €</small>`;
+                    }
+
+                    cellDiv.dataset.index=index;
+
+                    // Ajouter les pions au départ
+                    if (index===0) {
+                        cellDiv.innerHTML +='<div class="player-token"></div><div class="ai-token"></div>';
+                    }
+
+                    board.appendChild(cellDiv);
+                });
+
+            updateUI();
+            addLog("🎮 Nouvelle partie commencée ! À vous de jouer.");
+        }
+
+        // Lancer les dés
+        function rollDice() {
+            if (gameState.gameOver) return;
+
+            const dice1=Math.floor(Math.random() * 6)+1;
+            const dice2=Math.floor(Math.random() * 6)+1;
+            const total=dice1+dice2;
+
+            showModal("🎲 Résultat des dés",
+                `Vous avez obtenu :`,
+                `<div class="dice rolling" >$ {
+                    dice1
+                }
+
+                </div><div class="dice rolling" >$ {
+                    dice2
+                }
+
+                </div><br>Total: $ {
+                    total
+                }
+
+                `,
+                [ {
+                    text: "Avancer", action: ()=> movePlayer(total)
+                }
+
+                ]);
+
+            document.getElementById('roll-dice').disabled=true;
+        }
+
+        // Déplacer le joueur
+        function movePlayer(steps) {
+            closeModal();
+            const currentCell=document.querySelector(`[data-index="${gameState.player.position}"]`);
+
+            if (currentCell) {
+                const token=currentCell.querySelector('.player-token');
+                if (token) token.remove();
+            }
+
+            gameState.player.position=(gameState.player.position + steps) % BOARD.length;
+
+            // Passer par la case départ
+            if (gameState.player.position < steps) {
+                gameState.player.money+=200;
+                addLog("💰 Vous passez par la case Départ ! +200€");
+            }
+
+            const newCell=document.querySelector(`[data-index="${gameState.player.position}"]`);
+
+            if (newCell) {
+                const tokenDiv=document.createElement('div');
+                tokenDiv.className='player-token';
+                newCell.appendChild(tokenDiv);
+            }
+
+            handleLanding(gameState.player.position, 'player');
+            updateUI();
+        }
+
+        // Gérer l'arrivée sur une case
+        function handleLanding(position, player) {
+            const cell=BOARD[position];
+            const isPlayer=player==='player';
+
+            addLog(`$ {
+                    isPlayer ? '👤' : '🤖'
+                }
+
+                $ {
+                    isPlayer ? 'Vous arrivez' : 'IA arrive'
+                }
+
+                sur: $ {
+                    cell.name
+                }
+
+                `);
+
+            if (cell.type==='property' || cell.type==='station') {
+                const owner=gameState.player.properties.includes(position) ? 'player':
+                    gameState.ai.properties.includes(position) ? 'ai': null;
+
+                if ( !owner && isPlayer) {
+
+                    // Proposition d'achat
+                    showModal(`🏠 $ {
+                            cell.name
+                        }
+
+                        `,
+                        `Prix: $ {
+                            cell.price
+                        }
+
+                        €\nLoyer: $ {
+                            cell.rent
+                        }
+
+                        €\n\nVoulez-vous acheter cette propriété ?`,
+                        '',
+                        [ {
+                            text: `Acheter ($ {
+                                    cell.price
+                                }
+
+                                €)`, action: ()=> buyProperty(position)
+                        }
+
+                        ,
+                        {
+                        text: "Refuser", action: ()=> {
+                            closeModal(); endTurn();
+                        }
+                    }
+
+                    ]);
+            }
+
+            else if (owner && owner !==player) {
+                // Payer le loyer
+                const rent=cell.rent;
+
+                if (isPlayer) {
+                    gameState.player.money -=rent;
+                    gameState.ai.money+=rent;
+
+                    addLog(`💸 Vous payez $ {
+                            rent
+                        }
+
+                        € de loyer à l'IA`);
+
+                    }
+
+                    else {
+                        gameState.ai.money -=rent;
+                        gameState.player.money +=rent;
+                        addLog(`💰 L'IA vous paie ${rent}€ de loyer`);
+
+                        }
+
+                        if ( !isPlayer) {
+                            setTimeout(endTurn, 1500);
+                        }
+
+                        else {
+                            document.getElementById('end-turn').disabled=false;
+                        }
+                    }
+
+                    else {
+                        if ( !isPlayer) {
+                            aiDecision(position);
+                        }
+
+                        else {
+                            document.getElementById('end-turn').disabled=false;
+                        }
+                    }
+                }
+
+                else if (cell.type==='tax') {
+                    if (isPlayer) {
+                        gameState.player.money -=cell.amount;
+
+                        addLog(`💸 Vous payez $ {
+                                cell.amount
+                            }
+
+                            € d'impôts`);
+ document.getElementById('end-turn').disabled=false;
+                        }
+
+                        else {
+                            gameState.ai.money -=cell.amount;
+                            addLog(`💸 L'IA paie ${cell.amount}€ d' impôts`);
+                            setTimeout(endTurn, 1500);
+                        }
+                    }
+
+                    else {
+                        if ( !isPlayer) {
+                            setTimeout(endTurn, 1500);
+                        }
+
+                        else {
+                            document.getElementById('end-turn').disabled=false;
+                        }
+                    }
+
+                    checkGameOver();
+                    updateUI();
+                }
+
+                // Acheter une propriété
+                function buyProperty(position) {
+                    const cell=BOARD[position];
+
+                    if (gameState.player.money >=cell.price) {
+                        gameState.player.money -=cell.price;
+                        gameState.player.properties.push(position);
+
+                        addLog(`✅ Vous achetez $ {
+                                cell.name
+                            }
+
+                            pour $ {
+                                cell.price
+                            }
+
+                            €`);
+
+                        const cellDiv=document.querySelector(`[data-index="${position}"]`);
+                        if (cellDiv) cellDiv.classList.add('owned-by-player');
+                    }
+
+                    closeModal();
+                    document.getElementById('end-turn').disabled=false;
+                    updateUI();
+                }
+
+                // Décision de l'IA
+                function aiDecision(position) {
+                    const cell=BOARD[position];
+
+                    if ((cell.type==='property' || cell.type==='station') && gameState.ai.money >=cell.price && !gameState.ai.properties.includes(position) && !gameState.player.properties.includes(position)) {
+
+                        // IA achète si elle a assez d'argent et que c'est rentable
+                        if (cell.price <=gameState.ai.money * 0.4) {
+                            gameState.ai.money -=cell.price;
+                            gameState.ai.properties.push(position);
+                            addLog(`🤖 L'IA achète ${cell.name} pour ${cell.price}€`);
+
+                                const cellDiv=document.querySelector(`[data-index="${position}"]`);
+                                if (cellDiv) cellDiv.classList.add('owned-by-ai');
+                            }
+
+                            else {
+                                addLog(`🤖 L'IA refuse d' acheter $ {
+                                        cell.name
+                                    }
+
+                                    `);
+                            }
+                        }
+
+                        setTimeout(endTurn, 1500);
+                    }
+
+                    // Fin de tour
+                    function endTurn() {
+                        document.getElementById('end-turn').disabled=true;
+
+                        if (gameState.currentPlayer==='player') {
+                            gameState.currentPlayer='ai';
+                            addLog("🤖 Tour de l'IA");
+                            setTimeout(aiTurn, 1000);
+                        }
+
+                        else {
+                            gameState.currentPlayer='player';
+                            addLog("👤 À votre tour !");
+                            document.getElementById('roll-dice').disabled=false;
+                        }
+                    }
+
+                    // Tour de l'IA
+                    function aiTurn() {
+                        const dice1=Math.floor(Math.random() * 6) + 1;
+                        const dice2=Math.floor(Math.random() * 6) + 1;
+                        const total=dice1 + dice2;
+
+                        addLog(`🎲 L'IA lance les dés: ${dice1} + ${dice2} = ${total}`);
+
+
+                            setTimeout(()=> {
+                                    const currentCell=document.querySelector(`[data-index="${gameState.ai.position}"]`);
+
+                                    if (currentCell) {
+                                        const token=currentCell.querySelector('.ai-token');
+                                        if (token) token.remove();
+                                    }
+
+                                    gameState.ai.position=(gameState.ai.position + total) % BOARD.length;
+
+                                    if (gameState.ai.position < total) {
+                                        gameState.ai.money +=200;
+                                        addLog("💰 L'IA passe par la case Départ ! +200€");
+                                    }
+
+                                    const newCell=document.querySelector(`[data-index="${gameState.ai.position}"]`);
+
+                                    if (newCell) {
+                                        const tokenDiv=document.createElement('div');
+                                        tokenDiv.className='ai-token';
+                                        newCell.appendChild(tokenDiv);
+                                    }
+
+                                    handleLanding(gameState.ai.position, 'ai');
+                                    updateUI();
+                                }
+
+                                , 1000);
+                        }
+
+                        // Vérifier fin de partie
+                        function checkGameOver() {
+                            if (gameState.player.money < 0) {
+                                gameState.gameOver=true;
+
+                                showModal("😢 Défaite", "Vous n'avez plus d'argent ! L'IA gagne.", '', [ {
+                                        text: "Nouvelle partie", action: newGame
+                                    }
+
+                                    ]);
+                            }
+
+                            else if (gameState.ai.money < 0) {
+                                gameState.gameOver=true;
+
+                                showModal("🎉 Victoire !", "L'IA n'a plus d'argent ! Vous gagnez !", '', [ {
+                                        text: "Nouvelle partie", action: newGame
+                                    }
+
+                                    ]);
+                            }
+                        }
+
+                        // Mettre à jour l'interface
+                        function updateUI() {
+                            document.getElementById('player-money').textContent=gameState.player.money + '€';
+                            document.getElementById('player-position').textContent=BOARD[gameState.player.position].name;
+                            document.getElementById('player-properties').textContent=gameState.player.properties.length;
+
+                            document.getElementById('ai-money').textContent=gameState.ai.money + '€';
+                            document.getElementById('ai-position').textContent=BOARD[gameState.ai.position].name;
+                            document.getElementById('ai-properties').textContent=gameState.ai.properties.length;
+                        }
+
+                        // Ajouter une entrée au journal
+                        function addLog(message) {
+                            const log=document.getElementById('log');
+                            const entry=document.createElement('div');
+                            entry.className='log-entry';
+                            if (message.includes('🤖')) entry.classList.add('ai');
+                            entry.textContent=message;
+                            log.insertBefore(entry, log.firstChild);
+
+                            // Limiter à 10 entrées
+                            while (log.children.length > 10) {
+                                log.removeChild(log.lastChild);
+                            }
+                        }
+
+                        // Modale
+                        function showModal(title, message, extra, buttons) {
+                            document.getElementById('modal-title').textContent=title;
+                            document.getElementById('modal-message').textContent=message;
+                            document.getElementById('modal-dice-result').innerHTML=extra;
+
+                            const btnContainer=document.getElementById('modal-buttons');
+                            btnContainer.innerHTML='';
+
+                            buttons.forEach(btn=> {
+                                    const button=document.createElement('button');
+                                    button.textContent=btn.text;
+                                    button.onclick=btn.action;
+                                    btnContainer.appendChild(button);
+                                });
+
+                            document.getElementById('modal').classList.add('show');
+                        }
+
+                        function closeModal() {
+                            document.getElementById('modal').classList.remove('show');
+                        }
+
+                        // Nouvelle partie
+                        function newGame() {
+                            gameState= {
+                                player: {
+                                    money: 1500, position: 0, properties: [], inJail: false
+                                }
+
+                                ,
+                                ai: {
+                                    money: 1500, position: 0, properties: [], inJail: false
+                                }
+
+                                ,
+                                currentPlayer: 'player',
+                                gameOver: false
+                            }
+
+                            ;
+                            closeModal();
+                            initGame();
+                        }
+
+                        // Démarrer le jeu au chargement
+                        window.onload=initGame;
+                        </script> </body> </html>

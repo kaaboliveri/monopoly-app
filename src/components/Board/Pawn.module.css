@@ -1,0 +1,53 @@
+.pawn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.player {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.ai {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.pawn:hover {
+    transform: scale(1.2);
+    z-index: 30;
+}
+
+/* Animation de "saut" lors du déplacement */
+@keyframes hop {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.pawn.moving {
+    animation: hop 0.3s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pawn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+}

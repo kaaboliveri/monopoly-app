@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monopoly - Caisse de Communauté</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec37",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "montserrat": ["Montserrat", "sans-serif"],
+                        "poppins": ["Poppins", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANaijnBFmSY6TWd2wL2ldAwUcGwglAxMPdY_6fdvT8K1HR4MtwEJrAOyZ0-Z8EGQZJWxPSr-DXjBWwATgH60-Wxzz8uSAqoAFYGhz4SFJB18OH40OSDfnXtayMSqfHf9nBZb1oSzS_MprRlIacoQynVT3L8byos0xkuqSmezxr4SLspcsSISPCuVpkzU59KLYF88OLul-y-i5RgLQbq4Me_LSy5J4uL2gVGyRxNx6fC1IGFWigruWAhs6FtRmjbk9vk1OKNNzqPyI'); filter: blur(4px);"></div>
+<div class="absolute inset-0 z-10 bg-black/60"></div>
+<div class="relative z-20 flex h-screen w-full items-center justify-center p-4">
+<div class="flex w-full max-w-md flex-col overflow-hidden rounded-xl bg-[#e6f2e6] shadow-2xl dark:bg-[#2c2820] border-4 border-[#ffce3a]">
+<div class="flex flex-col items-center justify-center gap-6 p-8 text-center">
+<div class="flex flex-col items-center gap-4">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#ffce3a]/50 text-[#d97706]">
+<span class="material-symbols-outlined text-4xl" data-icon="savings">savings</span>
+</div>
+<h1 class="text-[#009ee2] dark:text-[#E0DACE] tracking-tight text-[32px] font-bold leading-tight font-montserrat">Caisse de Communauté</h1>
+</div>
+<p class="text-gray-800 dark:text-[#E0DACE] text-lg font-normal leading-normal">Erreur de la banque en votre faveur. Recevez 200 €.</p>
+<div class="flex w-full pt-2">
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#009ee2] text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-[#007bb5]">
+<span class="truncate">OK</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

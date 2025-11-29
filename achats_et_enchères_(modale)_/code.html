@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monopoly - Achat de Propriété</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec37",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102213",
+              "monopoly-green": "#1D8348",
+              "monopoly-red": "#C70000",
+              "modal-bg": "#F7F3E3"
+            },
+            fontFamily: {
+              "display": ["Montserrat", "sans-serif"],
+              "poppins": ["Poppins", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-poppins bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center bg-gray-900/50 p-4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1aTWULRMRYi_30x_8aZPtaCVtwpIM-fAusIdPRqj9BitbVvV725ADxFGjBhmu6ZG06tFSAI7ZHMczzWStxQUJH_diIuqNFzzivsf0RqOZPXtYh53HTBd5LLQAj7juo_UxDEazn3dersRdmzV2WxGbZbx2eF7VJ8EhROczXhmQ3UgQW0zokGEV6lZM575oePrNJg6QQphuoIwwu-g92Bcihos8al9lqRAOVkqdfoSYg0LXwQickhAKVllHsZY4tofLVfT62pYL8oY'); background-size: cover; background-position: center; backdrop-filter: blur(8px) brightness(0.7);">
+<div class="relative w-full max-w-md rounded-xl bg-[#e6f2e6] shadow-2xl overflow-hidden border-2 border-[#009ee2]">
+<button class="absolute top-3 right-3 z-10 text-gray-600 hover:text-black">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="p-6">
+<h1 class="text-[#009ee2] tracking-light text-3xl font-bold leading-tight text-center pb-2">Rue de la Paix</h1>
+<div class="mt-4 p-4 @container border-t-8 border-t-[#1c1ca3] rounded-lg bg-[#f7f7f7] border border-gray-300/50">
+<div class="flex flex-col items-stretch justify-start">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1">
+<p class="text-black text-lg font-bold leading-tight tracking-[-0.015em]">Titre de Propriété</p>
+<div class="flex items-end gap-3 justify-between">
+<div class="flex flex-col gap-1 mt-2">
+<p class="text-gray-800 text-base font-normal leading-normal">Loyer : <span class="font-bold">500€</span></p>
+<p class="text-gray-800 text-sm font-normal leading-normal">
+                                        Avec 1 maison <span class="font-bold">2 000€</span>. Avec 2 maisons <span class="font-bold">6 000€</span>. Avec 3 maisons <span class="font-bold">14 000€</span>. Avec 4 maisons <span class="font-bold">17 000€</span>. Avec HÔTEL <span class="font-bold">20 000€</span>.
+                                    </p>
+<hr class="my-2 border-gray-300/70"/>
+<p class="text-gray-800 text-sm font-normal leading-normal">Valeur hypothécaire <span class="font-bold">2 000€</span>.</p>
+<p class="text-gray-800 text-sm font-normal leading-normal">Prix des maisons <span class="font-bold">2 000€</span> chacune.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex flex-col items-center">
+<h2 class="text-gray-800 text-xl font-normal leading-tight tracking-[-0.015em] text-center">Acheter cette propriété ?</h2>
+<h3 class="text-black tracking-light text-[28px] font-extrabold leading-tight text-center pt-2">Prix : 40 000€</h3>
+<p class="text-gray-700 text-base font-normal leading-normal pt-1 text-center">Votre solde : 150 000€</p>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 rounded-lg bg-[#ffa500] px-6 py-3 text-base font-bold text-white transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-[#e6f2e6]">
+                        Mettre aux enchères
+                    </button>
+<button class="flex items-center justify-center gap-2 rounded-lg bg-[#009ee2] px-6 py-3 text-base font-bold text-white transition hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#e6f2e6]">
+                        Acheter
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

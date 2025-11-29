@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Taxe de Luxe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&amp;family=Poppins:wght@400;700&amp;family=Arial&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "monopoly-blue": "#009ee2",
+            "monopoly-red": "#d12d34",
+            "light-green-bg": "#e6f2e6",
+            "light-gray-bg": "#f7f7f7",
+            "dark-gray-text": "#333333",
+            "primary": "#c70000",
+            "background-light": "#F7F3E3",
+            "background-dark": "#1a1a1a",
+            "text-light": "#333333",
+            "text-dark": "#e5e5e5",
+            "accent-blue": "#005A9C"
+          },
+          fontFamily: {
+            "display": ["Montserrat", "Poppins", "Arial", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col bg-gray-900/60 group/design-root" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFBR98R10RHahTgrxwDkkKf2O03GBBmaXBvsGzsYQISH3OgQ7ifSkMtVbKMpFlNkMGlVRo5k7vPIY62UPJLd1VCm2JGyeWTwLJ8DsB1wgGvo13V2y2HpWg75tfwjKkQUX8I0hoTcWJBr4uNCLQDg78bxHfasvGHI5ols9mz-KTe6iQi8XJ2vRma4AU5A82Kv6P_D9leLmoweyfv4JYgpvkCAkTMA4rkZBayk-TNHTTdjGysaJKt_xy0FA9gOUuRqrqdVv-wb-qtb4"); background-size: cover; background-position: center;'>
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 items-center justify-center p-4 sm:p-6 md:p-8">
+<div class="layout-content-container flex w-full max-w-sm flex-col rounded-xl border-4 border-monopoly-blue bg-light-green-bg shadow-2xl dark:bg-background-dark dark:border-monopoly-blue">
+<div class="flex flex-col items-center justify-center p-6 sm:p-8">
+<div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-monopoly-blue/10 text-monopoly-blue dark:bg-monopoly-blue/20 dark:text-white">
+<span class="material-symbols-outlined !text-4xl" data-icon="diamond">diamond</span>
+</div>
+<h1 class="text-monopoly-blue dark:text-monopoly-blue text-[24px] font-bold leading-tight tracking-tight text-center pb-2">Taxe de Luxe</h1>
+<p class="text-dark-gray-text dark:text-text-dark text-base font-normal leading-normal text-center pb-4">Payez la taxe de luxe à la banque.</p>
+<div class="my-4 flex flex-col items-center justify-center rounded-lg bg-light-gray-bg dark:bg-white/5 py-4 px-8 w-full">
+<p class="text-dark-gray-text/80 dark:text-text-dark/80 text-sm font-normal">Montant à payer</p>
+<h2 class="text-monopoly-red text-[32px] font-bold leading-tight tracking-tighter pt-1">-100 M</h2>
+</div>
+<div class="flex w-full px-4 py-3 justify-center">
+<button class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-monopoly-red text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-monopoly-red/90 focus:ring-4 focus:ring-monopoly-red/30">
+<span class="truncate">Payer 100 M</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

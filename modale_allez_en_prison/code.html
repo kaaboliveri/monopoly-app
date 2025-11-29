@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Allez en Prison !</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+      }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#d12d34",
+              "background-light": "#f8f6f6",
+              "background-dark": "#201213",
+            },
+            fontFamily: {
+              "display": ["Montserrat", "Poppins", "Arial", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwJqxfgVyLiUG1vh2JnuzZ5CE3cPvoah68roGRVCmMImqGJch1lrvHaOjAKD_nOw76oVsuX8jj7HArMGDYBYEUvVO4Lox51KUubZIMwlytQh_mkZ79WO8rgUVGdVC-mbpA_uVIb25ghTl95bJU2y6s9aiWoNZPeHD0PAGnVnJGTf0f-SC4UNDRopv3ojq0qYRm-l6sf8WTme2QKGB6QBQLzsZk5z-Qhq4H1EEXQ21HKDFvTvsCBc_-OWi1MfrvpWjBLb7TyDNIwac"); background-size: cover; background-position: center;'>
+<div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+<div class="relative layout-container flex h-full min-h-screen grow flex-col items-center justify-center p-4">
+<div class="flex w-full max-w-md flex-col items-center overflow-hidden rounded-xl border-4 border-primary bg-white shadow-2xl">
+<div class="flex w-full flex-col items-center justify-center gap-4 p-6 text-center">
+<div class="flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 text-primary">
+<span class="material-symbols-outlined text-5xl">lock</span>
+</div>
+<div class="layout-content-container flex flex-col items-center">
+<h1 class="text-primary tracking-tight text-[32px] font-bold leading-tight pb-2">Allez en Prison !</h1>
+<p class="text-slate-700 text-base font-normal leading-normal max-w-xs">
+                            Vous êtes envoyé directement en prison. Ne passez pas par la case Départ et ne recevez pas 200 M.
+                        </p>
+</div>
+<div class="flex w-full pt-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+<span class="truncate">OK</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

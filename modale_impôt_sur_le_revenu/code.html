@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monopoly - Impôt sur le Revenu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400,FILL@0" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "monopoly-blue": "#009ee2",
+                        "monopoly-red": "#d12d34",
+                        "pale-green": "#e6f2e6",
+                        "background-dark": "#102213",
+                    },
+                    fontFamily: {
+                        display: ["Poppins", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-screen w-full flex-col bg-white group/design-root overflow-hidden" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCishZ4_7IqFAgIWGQuLx-ngcFd48Xzqkhuu-YLcwCYl1-z3wT2YUAf9Bwd-VTthnTM2cv-olaqMgcewqxxuFwbqvjpvHPVrzDwMc2Srp2sg4wcbmsmB-6HtwB9YPcs5rSB0e5Kx0RZPJfAkSXLDmgfNzYOEn-KbCKPCktRqGevDMuIaOsYjwfqy9JC4j60q0xp9NoD_vWqfjdusRTRB_F9x6LOCImNvZ1_NsYcDk82PshIyB8axS4jjdYaVh666DYXA7kEZ_JU5iU"); background-size: cover; background-position: center;'>
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-10"></div>
+<div class="layout-container flex h-full grow flex-col items-center justify-center p-4 z-20">
+<div class="layout-content-container flex flex-col w-full max-w-md bg-pale-green dark:bg-background-dark shadow-2xl rounded-xl border-4 border-monopoly-blue">
+<div class="flex justify-center pt-8 pb-4">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-monopoly-blue/10 dark:bg-monopoly-blue/20">
+<span class="material-symbols-outlined text-4xl text-monopoly-blue dark:text-monopoly-blue" data-icon="account_balance">account_balance</span>
+</div>
+</div>
+<h1 class="text-monopoly-blue dark:text-monopoly-blue tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-2 pt-2">Impôt sur le Revenu</h1>
+<p class="text-gray-800 dark:text-gray-300 text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">Vous êtes tombé sur la case Impôt sur le Revenu. Le montant a été prélevé de votre compte.</p>
+<h2 class="text-monopoly-red dark:text-monopoly-red tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-5 pt-3">- 200 M</h2>
+<div class="flex px-6 py-6 justify-center">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-monopoly-blue text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-monopoly-blue/90 focus:outline-none focus:ring-2 focus:ring-monopoly-blue/50 focus:ring-offset-2 focus:ring-offset-pale-green dark:focus:ring-offset-background-dark">
+<span class="truncate">Confirmer</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

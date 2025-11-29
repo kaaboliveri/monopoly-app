@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enchères Monopoly</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13ec37",
+            "background-light": "#f6f8f6",
+            "background-dark": "#102213",
+            "monopoly-blue-dark": "#1c1ca3",
+            "monopoly-blue-light": "#009ee2",
+            "monopoly-modal-bg": "#e6f2e6",
+            "monopoly-pass-red": "#d12d34",
+            "monopoly-bid-blue": "#009ee2",
+            "monopoly-progress-yellow": "#ffce3a",
+            "monopoly-pass-red-hover": "#b91c1c",
+            "monopoly-bid-blue-hover": "#007ab8",
+          },
+          fontFamily: {
+            "display": ["Poppins", "sans-serif"],
+            "sans": ["Montserrat", "Arial", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-sans">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAq5VKuzByG2_X3EgUzHzYICewm3ZRN9-f6_zKkEgYeR_hOwAiK41-bjaxYVL0M-pqPgrCFLe9pwiB6ji6_pLx1vR9usxdfYX4e1KTVievfMeUZUYymJtXnIweyDE6tGn7DQtHyVBEKbfwK0EmXwCYuuac1p5eRf-Nziw4VbKKzzhdGZYUduycZ25dJ3fcIiNDg5zNoaREyZPgPCU_LAldRc8PdgyEsaCC6vg2Cp08JruwkXvpRyjavUIDzHRekD0MNQbNfMV2BWxc');">
+<div class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"></div>
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+<div class="relative w-full max-w-lg rounded-xl bg-monopoly-modal-bg shadow-2xl border-4 border-monopoly-blue-dark">
+<button class="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-gray-700 hover:bg-gray-400/20">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1 px-6">
+<h1 class="text-monopoly-blue-light tracking-tight text-[32px] font-bold leading-tight text-center pb-3 pt-6">Rue de la Paix</h1>
+<div class="py-4 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-white p-4 shadow-inner">
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1">
+<p class="text-gray-800 text-sm font-bold">Titre de Propriété</p>
+<p class="text-black text-lg font-normal leading-tight tracking-[-0.015em]">Rue de la Paix</p>
+<div class="flex items-end gap-3 justify-between mt-2">
+<div class="flex flex-col gap-1">
+<p class="text-gray-800 text-base font-normal leading-normal">Loyer: <span class="font-bold text-black">2000€</span></p>
+<p class="text-gray-800 text-base font-normal leading-normal">Avec 1 maison: <span class="font-bold text-black">4000€</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 p-4">
+<div class="flex gap-6 justify-between"><p class="text-gray-800 text-base font-normal leading-normal">Temps Restant</p><span class="text-black font-bold">8s</span></div>
+<div class="rounded-full bg-gray-300"><div class="h-2.5 rounded-full bg-monopoly-progress-yellow" style="width: 75%;"></div></div>
+</div>
+<div class="flex flex-col gap-2 p-4">
+<div class="flex items-center gap-4 bg-white px-4 min-h-14 justify-between border-b border-gray-200">
+<div class="flex items-center gap-4">
+<div class="text-monopoly-blue-light flex items-center justify-center rounded-lg bg-blue-100 shrink-0 size-10">
+<span class="material-symbols-outlined text-3xl">trending_up</span>
+</div>
+<p class="text-black text-base font-bold leading-normal flex-1 truncate">Meilleure Offre</p>
+</div>
+<div class="shrink-0"><p class="text-black text-lg font-bold leading-normal">1500€</p></div>
+</div>
+<div class="flex items-center gap-4 bg-white px-4 min-h-14 justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10 shrink-0" data-alt="Avatar d'Alex, un jeune homme souriant" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxIwls66YNh5uUO2cS6NQ7MK3LbRU6YkmO9PPi9uqxgGflRMshZlgYGqcxbZZ0Ak5EZYm24bJTstfm-r9f1WEEeYr92yBD6eYgpLKy97Jr-8rQSxfzF4xpW80OcYMr44wVT8EWsM3wcBby8raFRluXOWaI6XNWR3VWvroSH2K4E9O7SREzGj4mYWieSsTK73JuRrUoWI1RD7gjz4qOaDfvMqgyYhNVYTCUeyVY8Pg9vVV42fhTLjH81YnYSjg7BGhnBKvklcAyOsI");'></div>
+<p class="text-gray-800 text-base font-normal leading-normal flex-1 truncate">Par Alex</p>
+</div>
+<div class="shrink-0"><p class="text-black text-base font-normal leading-normal"></p></div>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-4">
+<label class="text-black font-bold" for="bid-amount">Votre Enchère</label>
+<div class="relative">
+<button class="absolute left-0 top-1/2 -translate-y-1/2 h-full px-3 text-gray-500 hover:text-black">
+<span class="material-symbols-outlined text-2xl">remove</span>
+</button>
+<input class="w-full rounded-lg border border-gray-300 bg-white px-12 py-3 text-center text-lg font-bold text-black focus:border-monopoly-blue-light/50 focus:ring-monopoly-blue-light/50" id="bid-amount" type="number" value="1550"/>
+<span class="absolute right-12 top-1/2 -translate-y-1/2 text-lg font-normal text-gray-800">€</span>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 h-full px-3 text-gray-500 hover:text-black">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 p-4">
+<button class="w-full flex items-center justify-center gap-2 rounded-lg bg-monopoly-pass-red px-6 py-3 text-base font-bold text-white hover:bg-monopoly-pass-red-hover transition-colors">
+                  Passer
+                </button>
+<button class="w-full flex items-center justify-center gap-2 rounded-lg bg-monopoly-bid-blue px-6 py-3 text-base font-bold text-white hover:bg-monopoly-bid-blue-hover transition-colors">
+                  Enchérir
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

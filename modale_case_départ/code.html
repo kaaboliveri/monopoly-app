@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Départ - Monopoly</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#009de0",
+              "background-light": "#f5f7f8",
+              "background-dark": "#0f1d23",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+        }
+    </style>
+</head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center bg-background-light dark:bg-background-dark p-4 group/design-root" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBC0rnv3ZYpeocu-Y7bpDekG_IVma6b9ayb81o8CUUpItyM_GNVG4XFuBFds7zXHbREgLWZxacT0s0wy9um7q3Uoc3beGtRABW06ecJOTLFHqarembdNnwvFUmbXZ5DI_eysr5CK3-MuFsoJb46ircz8n9rQY0HkgKUmKbpoRrBF8f8SHBrhjj4Nl9NxARdYYgyIJ8BjVzRbd_dqXfeuSKYcPFJ2McFpYzZUwjfzolHwnGPLJM1331iGGpaOXWxXWnS62pQez5ajxg');">
+<!-- Overlay -->
+<div class="absolute inset-0 bg-black/30"></div>
+<!-- Modal -->
+<div class="relative w-full max-w-md overflow-hidden rounded-xl border-4 border-primary bg-[#e6f2e6] text-center shadow-2xl">
+<div class="flex flex-col p-8">
+<div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-5xl">trending_up</span>
+</div>
+<h1 class="mt-6 text-primary tracking-light text-[32px] font-bold leading-tight">Case Départ</h1>
+<p class="mt-2 text-[#101618] text-base font-normal leading-normal">Vous avez franchi la case Départ. Recevez 200 M.</p>
+<h2 class="mt-4 text-[22px] font-bold leading-tight tracking-[-0.015em] text-green-600">+200 M</h2>
+<div class="mt-8 flex w-full justify-center">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">OK</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

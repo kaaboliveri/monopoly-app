@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monopoly - En Prison</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec37",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102213",
+                        "monopoly-red": "#d12d34",
+                        "monopoly-blue": "#009ee2",
+                    },
+                    fontFamily: {
+                        "display": ["Poppins", "Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-gray-800 font-display">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center bg-background-light dark:bg-background-dark p-4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiKsjTsOQ3M8gGsrG9mM3b02J2Ok1U_8k9_9CWr5B2haVJ-XpuuR-Uq8zyWgroQImxEGqirJAHBUbJkE1C0iQiF_mVvAJLfjWKoCVfT8S3Tmxde8TluUZsTALkuMw8jLiz4L_wskz4F-uy0etVhkdyL_pf7FbgyNtfL1i2vn_rOK8W9E4pN-vxjnfj5s2yO_VS_K7ZRnNazgk5CXSRM4Kz_SCjKDLF8KTga9fyKRi7SmynaVzYtmA8TKYWPhQgcPibY4csRn61bF0'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm"></div>
+<div class="relative w-full max-w-lg rounded-xl bg-white dark:bg-gray-900 shadow-2xl flex flex-col overflow-hidden border-4 border-monopoly-red">
+<button class="absolute top-3 right-3 text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="p-8">
+<div class="flex flex-col items-center text-center">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md mb-4">
+<span class="material-symbols-outlined text-4xl text-monopoly-red">tag</span>
+</div>
+<h1 class="text-monopoly-blue dark:text-monopoly-blue tracking-tight text-3xl font-bold leading-tight">Vous êtes en Prison !</h1>
+<p class="text-gray-800 dark:text-gray-300 text-base font-normal leading-normal pt-2">Il vous reste 2 tours à passer en prison.</p>
+</div>
+<div class="mt-8 flex flex-col gap-4" role="radiogroup">
+<label class="flex items-center gap-4 rounded-lg bg-[#f7f7f7] dark:bg-gray-800 p-4 transition-all duration-200 cursor-pointer ring-2 ring-transparent hover:ring-monopoly-blue/50 has-[:checked]:ring-monopoly-blue has-[:checked]:bg-monopoly-blue/10">
+<div class="flex grow flex-col">
+<p class="text-gray-900 dark:text-white text-base font-bold leading-normal">Payer l'amende de 50M</p>
+<p class="text-gray-600 dark:text-gray-400 text-sm font-normal leading-normal">Sortez immédiatement en payant l'amende.</p>
+</div>
+<input class="h-5 w-5 cursor-pointer border-2 border-gray-400 dark:border-gray-600 bg-transparent text-monopoly-blue checked:border-monopoly-blue focus:ring-monopoly-blue focus:ring-offset-white dark:focus:ring-offset-gray-900" name="prison-option" type="radio"/>
+</label>
+<label class="flex items-center gap-4 rounded-lg bg-[#f7f7f7] dark:bg-gray-800 p-4 transition-all duration-200 cursor-pointer ring-2 ring-transparent hover:ring-monopoly-blue/50 has-[:checked]:ring-monopoly-blue has-[:checked]:bg-monopoly-blue/10">
+<div class="flex grow flex-col">
+<p class="text-gray-900 dark:text-white text-base font-bold leading-normal">Utiliser une carte "Libéré de Prison"</p>
+<p class="text-gray-600 dark:text-gray-400 text-sm font-normal leading-normal">Vous possédez 1 carte. Utilisez-la pour sortir.</p>
+</div>
+<input class="h-5 w-5 cursor-pointer border-2 border-gray-400 dark:border-gray-600 bg-transparent text-monopoly-blue checked:border-monopoly-blue focus:ring-monopoly-blue focus:ring-offset-white dark:focus:ring-offset-gray-900" name="prison-option" type="radio"/>
+</label>
+<label class="flex items-center gap-4 rounded-lg bg-[#f7f7f7] dark:bg-gray-800/50 p-4 transition-all duration-200 cursor-not-allowed opacity-60">
+<div class="flex grow flex-col">
+<p class="text-gray-600 dark:text-gray-500 text-base font-bold leading-normal">Tenter un double aux dés</p>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">Non disponible ce tour.</p>
+</div>
+<input class="h-5 w-5 cursor-not-allowed border-2 border-gray-400 dark:border-gray-600 bg-transparent" disabled="" name="prison-option" type="radio"/>
+</label>
+</div>
+</div>
+<div class="flex p-6 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-800">
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-monopoly-blue text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-monopoly-blue/90 transition-colors disabled:bg-monopoly-blue/50 disabled:cursor-not-allowed">
+<span class="truncate">Confirmer la sélection</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

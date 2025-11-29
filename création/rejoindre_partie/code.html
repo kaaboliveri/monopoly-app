@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monopoly - Configurer une Partie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0..200" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec37",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102213",
+              "monopoly-blue": "#009ee2",
+              "monopoly-red": "#ff3b30",
+            },
+            fontFamily: {
+              "display": ["Montserrat", "sans-serif"],
+              "body": ["Poppins", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+<body class="bg-[#e6f2e6] font-body text-gray-800">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+<div class="w-full max-w-4xl">
+<div class="flex flex-wrap items-end justify-between gap-4 py-4">
+<div class="flex flex-col gap-2">
+<p class="font-display text-4xl font-black leading-tight tracking-tighter text-monopoly-blue">Configurer une Partie</p>
+<p class="text-base font-normal leading-normal text-gray-600">Créez une nouvelle partie ou rejoignez une partie existante avec un code.</p>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-5">
+<div class="lg:col-span-3">
+<div class="flex h-full flex-col rounded-xl border border-gray-200/80 bg-[#f7f7f7]">
+<h2 class="font-display text-monopoly-blue text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 pt-6">Créer une nouvelle partie</h2>
+<div class="flex-grow p-6 pt-4">
+<div class="relative flex w-full flex-col items-start justify-between gap-3 py-4 @[480px]:flex-row @[480px]:items-center">
+<div class="flex w-full shrink-[3] items-center justify-between">
+<p class="text-gray-900 text-base font-normal leading-normal">Nombre de joueurs</p>
+<p class="text-gray-900 text-sm font-normal leading-normal @[480px]:hidden">4</p>
+</div>
+<div class="flex h-4 w-full items-center gap-4">
+<div class="flex h-1.5 flex-1 rounded-full bg-[#dbe6dd]">
+<div class="h-full w-[40%] rounded-full bg-monopoly-blue"></div>
+<div class="relative">
+<div class="absolute -left-2.5 -top-2 size-5 cursor-pointer rounded-full border-2 border-white bg-monopoly-blue"></div>
+</div>
+</div>
+<p class="text-gray-900 text-sm font-normal leading-normal hidden w-4 text-center @[480px]:block">4</p>
+</div>
+</div>
+<h3 class="font-display text-monopoly-blue text-lg font-bold leading-tight tracking-[-0.015em] pt-8 pb-2">Règles personnalisées</h3>
+<div class="space-y-1">
+<div class="flex min-h-14 items-center justify-between gap-4 rounded-lg px-2 hover:bg-gray-200/50">
+<div class="flex items-center gap-4">
+<div class="text-gray-600 flex items-center justify-center rounded-lg bg-gray-200/70 shrink-0 size-10">
+<span class="material-symbols-outlined">local_parking</span>
+</div>
+<p class="text-gray-900 text-base font-normal leading-normal flex-1 truncate">Parc Gratuit avec argent</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-300 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-monopoly-blue">
+<div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<div class="flex min-h-14 items-center justify-between gap-4 rounded-lg px-2 hover:bg-gray-200/50">
+<div class="flex items-center gap-4">
+<div class="text-gray-600 flex items-center justify-center rounded-lg bg-gray-200/70 shrink-0 size-10">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<p class="text-gray-900 text-base font-normal leading-normal flex-1 truncate">Pas d'achat aux enchères</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-300 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-monopoly-blue">
+<div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6">
+<button class="flex w-full items-center justify-center gap-2 rounded-lg bg-monopoly-red px-6 py-3 text-base font-bold text-white transition hover:bg-opacity-90">
+<span class="material-symbols-outlined">casino</span>
+                                Créer la partie
+                            </button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-2">
+<div class="flex h-full flex-col justify-between rounded-xl border border-gray-200/80 bg-[#f7f7f7] p-6">
+<div>
+<h2 class="font-display text-monopoly-blue text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-0">Rejoindre une partie</h2>
+<p class="text-sm text-gray-500">Saisissez le code de la partie pour la rejoindre.</p>
+</div>
+<div class="my-8 flex flex-col gap-4">
+<label class="sr-only" for="game-code">Code de la partie</label>
+<input class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-center text-lg font-bold uppercase tracking-widest text-gray-800 placeholder:font-medium placeholder:normal-case placeholder:tracking-normal placeholder:text-gray-500 focus:border-monopoly-blue/50 focus:ring-2 focus:ring-monopoly-blue/40" id="game-code" placeholder="Code de la partie" type="text"/>
+</div>
+<button class="flex w-full items-center justify-center gap-2 rounded-lg bg-monopoly-blue px-6 py-3 text-base font-bold text-white transition hover:bg-opacity-90">
+<span class="material-symbols-outlined">login</span>
+                            Rejoindre
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>
